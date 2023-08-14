@@ -11,7 +11,7 @@ let staticPath = `${__dirname}/public`;
     The express.static() middleware serves the files in the static (public) folder.
 */
 
-app.use(staticPath, express.static())
+app.use(express.static(staticPath));
 app.get('/', (request, response) => response.sendFile(entryPath));
 
 
