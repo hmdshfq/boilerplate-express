@@ -13,6 +13,9 @@ let staticPath = `${__dirname}/public`;
 
 app.use('/public', express.static(staticPath));
 app.get('/', (request, response) => response.sendFile(entryPath));
+app.get('/json', (request, response) => response.json({
+    "message": "Hello json"
+}));
 
 
 
