@@ -21,10 +21,10 @@ let responseObject = {
 };
 app.get('/json', (request, response) => {
     if (process.env.MESSAGE_STYLE === 'uppercase') {
-        let message = { ...responseObject };
-        return response.json(message.message.toUpperCase());
+        responseObject.message = responseObject.message.toUpperCase();
+        return response.json(responseObject);
     } else {
-        return response.json(responseObject.message);
+        return response.json(responseObject);
     }
 });
 
