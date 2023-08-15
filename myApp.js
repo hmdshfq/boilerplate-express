@@ -29,6 +29,12 @@ app.get('/now', (req, res, next) => {
     });
 })
 
+app.get('/:word/echo', (req, res) => {
+    return res.json({
+        echo: req.params.word
+    })
+})
+
 let entryPath = `${__dirname}/views/index.html`;
 app.get('/', (request, response) => response.sendFile(entryPath));
 
