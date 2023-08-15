@@ -35,6 +35,11 @@ app.get('/now', (req, res, next) => {
 
 app.use(urlEncodedMiddleware);
 app.use(bodyParser.json());
+app.post('/name', (req, res) => {
+    return res.json({
+        name: `${req.body.first} ${req.body.last}`
+    })
+})
 
 app.get('/:word/echo', (req, res) => {
     return res.json({
