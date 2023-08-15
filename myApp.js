@@ -20,6 +20,15 @@ app.use((request, response, next) => {
     next();
 });
 
+app.get('/now', (req, res, next) => { 
+    req.time = new Date().toString();
+    next();
+}, (req, res, next) => {
+    res.send({
+        time: req.time
+    });
+})
+
 let entryPath = `${__dirname}/views/index.html`;
 app.get('/', (request, response) => response.sendFile(entryPath));
 
