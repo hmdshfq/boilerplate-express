@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+require('dotenv').config();
 
 let entryPath = `${__dirname}/views/index.html`;
 let staticPath = `${__dirname}/public`;
@@ -12,41 +13,17 @@ let staticPath = `${__dirname}/public`;
 */
 
 app.use('/public', express.static(staticPath));
+
 app.get('/', (request, response) => response.sendFile(entryPath));
-app.get('/json', (request, response) => response.json({
-    "message": "Hello json"
-}));
 
+let responseObject = {
+    message: 'Hello json',
+};
+app.get('/json', (request, response) => {
+    if (process.env.MESSAGE_STYLE === 'uppercase') {
+        return response.json(responseObject.message.toUpperCase());
+    }
+    return response.json(responseObject);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+module.exports = app;
