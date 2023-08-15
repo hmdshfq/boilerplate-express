@@ -1,6 +1,10 @@
 let express = require('express');
 let app = express();
+let bodyParser = require('body-parser');
 require('dotenv').config();
+let urlEncodedMiddleware = bodyParser.urlencoded({
+    extended: false
+})
 
 /* 
     Adding middleware - A middleware is a function that intercepts
@@ -28,6 +32,9 @@ app.get('/now', (req, res, next) => {
         time: req.time
     });
 })
+
+app.use(urlEncodedMiddleware);
+app.use(bodyParser.json());
 
 app.get('/:word/echo', (req, res) => {
     return res.json({
