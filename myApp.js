@@ -35,6 +35,12 @@ app.get('/:word/echo', (req, res) => {
     })
 })
 
+app.get('/name', (req, res) => {
+    return res.json({
+        name: `${req.query.first} ${req.query.last}`
+    })
+})
+
 let entryPath = `${__dirname}/views/index.html`;
 app.get('/', (request, response) => response.sendFile(entryPath));
 
